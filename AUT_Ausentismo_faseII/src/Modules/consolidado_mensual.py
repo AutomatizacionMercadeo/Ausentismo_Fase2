@@ -33,7 +33,7 @@ ruta_reportes_consolidado_mensual = os.path.join(os.path.dirname(os.path.dirname
 
 
 def extraer_datos_consolidado_diario(dia_anterior):
-    ruta_reportes_consolidado_diario = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{dia_anterior}.xlsx")
+    ruta_reportes_consolidado_diario = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{dia_anterior}.xlsx")
     if not os.path.exists(ruta_reportes_consolidado_diario):
         print(f"No se encontró el archivo diario en: {ruta_reportes_consolidado_diario}")
         return False

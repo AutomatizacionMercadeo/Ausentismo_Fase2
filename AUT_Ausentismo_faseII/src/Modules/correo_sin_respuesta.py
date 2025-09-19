@@ -38,7 +38,7 @@ def enviar_correo_sin_respuesta(dia_habil):
             Por favor, revise y tome las acciones necesarias.
         """
 
-        ruta_excel = os.path.join(path_root,'reportes', f"Ausentismos_SIN_JUSTIFICACION_GENERAL - {dia_habil}.xlsx")
+        ruta_excel = os.path.join(path_root,'Reportes_Ausentismos', f"Ausentismos_SIN_JUSTIFICACION_GENERAL - {dia_habil}.xlsx")
 
         crear_correo.enviar_correo(asunto, cuerpo, ruta_excel)
 

@@ -35,7 +35,7 @@ def filtrar_zonas_ausentismos():
                 zonas_filtradas.append(fila)
                 # print(f"Fila encontrada para la zona {zona}: {fila}")
 
-        carpeta_zona = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'reportes', f'Zona_{zona}_{dia_habil}'))
+        carpeta_zona = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Reportes_Ausentismos', f'Zona_{zona}_{dia_habil}'))
         if not os.path.exists(carpeta_zona):
             os.makedirs(carpeta_zona)
             #print(f"Carpeta creada: {carpeta_zona}")

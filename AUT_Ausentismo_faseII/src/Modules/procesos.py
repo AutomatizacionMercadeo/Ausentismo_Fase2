@@ -19,13 +19,13 @@ class Cruce_datos:
         # self.ruta_justificacion = self.buscar_archivo_justificacion()
 
         # creamos la ruta de la carpeta reportes
-        self.ruta_maestra = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'MAESTRAS (Ausentismos).xlsx')
-        self.ruta_ausentismo_sin_justificacion = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'Ausentismos_SIN_JUSTIFICACION_GENERAL - {self.obtener_ultimo_dia_anterior()}.xlsx')
+        self.ruta_maestra = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f'MAESTRAS (Ausentismos).xlsx')
+        self.ruta_ausentismo_sin_justificacion = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f'Ausentismos_SIN_JUSTIFICACION_GENERAL - {self.obtener_ultimo_dia_anterior()}.xlsx')
         #self.ruta_justificacion = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'AUSENTISMO_{self.obtener_ultimo_dia_anterior()}.xlsx')
         #self.ruta_ausentismo_vencidos = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'Ausentismos_SIN_JUSTIFICACION_GENERAL - {self.fecha_vencida_2_dias}.xlsx')
-        self.ruta_reportes_vencidos = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes')
+        self.ruta_reportes_vencidos = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos')
         #self.ruta_reportes_consolidado_mensual = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f"REPORTE_CONSOLIDADO_AUSENTISMO_{self.obtener_nombre_mes(ayer)}_{año_actual}.xlsx")
-        self.ruta_reportes_consolidado_diario = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{self.obtener_ultimo_dia_anterior()}.xlsx")
+        self.ruta_reportes_consolidado_diario = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{self.obtener_ultimo_dia_anterior()}.xlsx")
         self.crear_correos = crearCorreos(correo_destinatario = None)
         print(self.ruta_maestra)
 
@@ -104,7 +104,7 @@ class Cruce_datos:
 
     # ahora creamos una funcion para hacer el cruce entre la maestra y justificacion
     def extraer_datos_JUSTIFICACION(self):
-        carpeta_reportes = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "reportes")
+        carpeta_reportes = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Reportes_Ausentismos")
         fecha = self.obtener_ultimo_dia_anterior()
 
         patron = re.compile(rf"^REPORTE_AUSENTISMO.*_{fecha}\.xlsx$", re.IGNORECASE)

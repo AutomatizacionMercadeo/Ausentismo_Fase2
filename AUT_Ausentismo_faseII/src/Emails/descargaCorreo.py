@@ -16,7 +16,7 @@ class DescargaCorreo():
         # Rutas
         self.path_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.path_email = os.path.join(self.path_root, "Emails","Estado.txt")
-        self.path_download = os.path.join(self.path_root, "reportes")
+        self.path_download = os.path.join(self.path_root, "Reportes_Ausentismos")
         self.crear_correo = crearCorreos(correo_destinatario=None)
 
     def conexion_correo(self):

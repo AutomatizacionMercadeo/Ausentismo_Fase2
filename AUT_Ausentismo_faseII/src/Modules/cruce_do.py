@@ -33,7 +33,7 @@ def extraer_reporte_do():
 
     # obtener la ruta src
     path_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    ruta_reporte_DO = os.path.join(path_root, 'reportes', 'Reporte_DO.xlsx')
+    ruta_reporte_DO = os.path.join(path_root, 'Reportes_Ausentismos', 'Reporte_DO.xlsx')
 
     print(path_root)
     print(ruta_reporte_DO)
@@ -75,7 +75,7 @@ def guardar_datos_no_coincidentes(datos_no_coincidentes, dia_habil):
 
     # obtener la ruta src
     path_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    ruta_guardado = os.path.join(path_root, 'reportes', f'Datos_No_Coincidentes_con_DO_{dia_habil}.xlsx')
+    ruta_guardado = os.path.join(path_root, 'Reportes_Ausentismos', f'Datos_No_Coincidentes_con_DO_{dia_habil}.xlsx')
 
     workbook = load_workbook(ruta_guardado) if os.path.exists(ruta_guardado) else Workbook()
     hoja = workbook.active

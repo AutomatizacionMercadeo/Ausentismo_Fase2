@@ -15,7 +15,7 @@ def enviar_correo_zonas(zonas, dia_habil):
 
     for zona in zonas:
         carpeta_zona = os.path.abspath(os.path.join(
-            os.path.dirname(__file__), '..', 'reportes', f'Zona_{zona}_{dia_habil}'
+            os.path.dirname(__file__), '..', 'Reportes_Ausentismos', f'Zona_{zona}_{dia_habil}'
         ))
 
         # Recorremos las carpetas de municipios dentro de la zona

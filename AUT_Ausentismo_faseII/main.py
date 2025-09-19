@@ -22,7 +22,7 @@ def main():
 
 
     # Crear carpeta por si no existen
-    folder = os.path.join(path_root, "reportes")
+    folder = os.path.join(path_root, "Reportes_Ausentismos")
     if not os.path.exists(folder):
         os.mkdir(folder)
 

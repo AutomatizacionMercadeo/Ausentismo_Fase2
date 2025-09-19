@@ -7,7 +7,7 @@ from src.Modules.consolidado_mensual import MESES_DIC
 
 
 def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
-        
+
         fecha_valida = dia_habil
         if not fecha_valida:
             return
@@ -37,7 +37,7 @@ def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
             match = patron.search(nombre)   # usar search en lugar de match
             if match:
                 fecha_archivo = match.group(1)
-                print(f"Detectado: {nombre} → fecha {fecha_archivo}")
+                print(f"Detectado: {nombre} - fecha {fecha_archivo}")
 
                 if fecha_archivo != fecha_valida:
                     try:
