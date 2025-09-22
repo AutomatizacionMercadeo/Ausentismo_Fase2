@@ -48,10 +48,10 @@ def enviar_correo_zonas(zonas, dia_habil):
 
                 # Enviar correo
                 if data_correos_mpio:
-                    # print(f" Enviando correo de {municipio} con archivo {ruta_excel_mpio}")
-                    # correo = crearCorreos(data_correos_mpio)
-                    # asunto, cuerpo = correo.preparar_correo(dia_habil,zona, municipio)
-                    # correo.enviar_correo(asunto, cuerpo, ruta_excel_mpio)
+                    print(f" Enviando correo de {municipio} con archivo {ruta_excel_mpio}")
+                    correo = crearCorreos(data_correos_mpio)
+                    asunto, cuerpo = correo.preparar_correo(dia_habil,zona, municipio)
+                    correo.enviar_correo(asunto, cuerpo, ruta_excel_mpio)
 
                     contador += 1
                 else:
