@@ -69,7 +69,7 @@ def main():
 
 
     try:
-        datos_no_coincidentes = cruce_do()
+        datos_no_coincidentes = cruce_do(dia_habil)
         if datos_no_coincidentes is False:
             print("El cruce de datos no se pudo completar debido a un error.")
         else:
