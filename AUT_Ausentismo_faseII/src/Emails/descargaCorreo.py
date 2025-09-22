@@ -30,9 +30,9 @@ class DescargaCorreo():
             client_secret = data['secret_id']
             tenant_id_ = data['tenant_id']
 
-            print(f"ID de cliente: {client_id}")
-            print(f"Secreto de cliente: {client_secret}")
-            print(f"ID de inquilino: {tenant_id_}")
+            # print(f"ID de cliente: {client_id}")
+            # print(f"Secreto de cliente: {client_secret}")
+            # print(f"ID de inquilino: {tenant_id_}")
 
             # Definir ruta raíz
             path_root = os.path.dirname(os.path.abspath(__file__))
@@ -131,16 +131,28 @@ class DescargaCorreo():
 
                     # Aquí agregamos el mensaje antes del contenido reenviado
                     rv.body = (
-                        f"""<p>
-                        Este correo fue reenviado automáticamente porque la fecha no coincide con lo esperado.<br>
-                        <b>Asunto recibido:</b> {mensaje.subject}<br>
-                        <b>Asunto esperado:</b> {subject}<br><br>
-                        Por favor, verifique la fecha correspondiente, y vuelva a enviar el correo a 
-                        <a href="mailto:correo.automatizacion@gruporeditos.com">correo.automatizacion@gruporeditos.com</a>.<br>
-                        Gracias.
-                        </p>
-                        <hr>
-                        """
+                        f"""
+                            <p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+                                Estimado usuario,<br><br>
+                                Este correo ha sido reenviado automáticamente debido a una discrepancia en la fecha detectada.<br><br>
+
+                                <b>Asunto recibido:</b> {mensaje.subject}<br>
+                                <b>Asunto esperado:</b> {subject}<br><br>
+
+                                Le solicitamos amablemente verificar la informacion correspondiente y reenviar el correo a la siguiente dirección: 
+                                <a href="mailto:correo.automatizacion@gruporeditos.com" style="color: #1a73e8; text-decoration: none;">
+                                    correo.automatizacion@gruporeditos.com
+                                </a>.<br><br>
+
+                                Agradecemos su colaboración.
+                            </p>
+                            <hr style="border: 0; border-top: 1px solid #ccc; margin-top: 20px;">
+                            <p style="font-family: Arial, sans-serif; font-size: 12px; color: #777;">
+                                Este es un mensaje generado automáticamente por el sistema de automatización de ausentismos.<br>
+                                Por favor, no responda a este correo.
+                            </p>
+                            """
+
                         + rv.body
                     )
                     rv.send()
@@ -252,12 +264,7 @@ class DescargaCorreo():
     
             
             print("No se encontró mensaje válido o NO leido en el ultimo correo recibido.")
-            # Enviar correo de error si no se encontró el mensaje esperado
-            # cuerpo = self.crear_correo.generar_cuerpo_error("Error: mensaje no encontrado", "Mensaje no recibido")
-            # self.crear_correo.enviar_correo_error(
-            #     asunto ="Error: mensaje no encontrado",
-            #     cuerpo = cuerpo
-            # )
+            
             
             ############# FIN DEL PROCESO DE DESCARGA DE CORREO #############    
             return False, "No se encontro mas correos NO LEIDOS para procesar"

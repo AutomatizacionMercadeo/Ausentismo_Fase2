@@ -1,1 +1,14 @@
+# Ignorar archivo .env
 .env
+
+# Ignorar todos los Excel
+*.xlsx
+
+# Ignorar carpeta Reportes_Ausentismos (dentro de src)
+src/Reportes_Ausentismos/
+
+# Ignorar carpeta Consolidado_Mensual (dentro de src)
+src/Consolidado_Mensual/
+
+# ignorar la carpeta o365 dentro de src/emails
+src/Emails/o365_token.txt

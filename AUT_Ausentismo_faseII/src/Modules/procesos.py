@@ -21,10 +21,7 @@ class Cruce_datos:
         # creamos la ruta de la carpeta reportes
         self.ruta_maestra = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f'MAESTRAS (Ausentismos).xlsx')
         self.ruta_ausentismo_sin_justificacion = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f'Ausentismos_SIN_JUSTIFICACION_GENERAL - {self.obtener_ultimo_dia_anterior()}.xlsx')
-        #self.ruta_justificacion = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'AUSENTISMO_{self.obtener_ultimo_dia_anterior()}.xlsx')
-        #self.ruta_ausentismo_vencidos = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f'Ausentismos_SIN_JUSTIFICACION_GENERAL - {self.fecha_vencida_2_dias}.xlsx')
         self.ruta_reportes_vencidos = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos')
-        #self.ruta_reportes_consolidado_mensual = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'reportes', f"REPORTE_CONSOLIDADO_AUSENTISMO_{self.obtener_nombre_mes(ayer)}_{año_actual}.xlsx")
         self.ruta_reportes_consolidado_diario = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Reportes_Ausentismos', f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{self.obtener_ultimo_dia_anterior()}.xlsx")
         self.crear_correos = crearCorreos(correo_destinatario = None)
         print(self.ruta_maestra)
@@ -403,6 +400,19 @@ class Cruce_datos:
             self.estilo_formato_excel(hoja)
 
             # Guardar el archivo
+            workbook.save(self.ruta_reportes_consolidado_diario)
+            print(f"Reporte consolidado actualizado en: {self.ruta_reportes_consolidado_diario}")
+
+        else:
+            # Si el archivo ya existe, lo abrimos y escribimos nuevas filas
+            workbook = load_workbook(self.ruta_reportes_consolidado_diario)
+            hoja = workbook["Consolidado"]
+
+            # Agregar nuevas filas al final
+            for fila in data_consolidada:
+                hoja.append(fila)
+
+            # Guardar cambios
             workbook.save(self.ruta_reportes_consolidado_diario)
             print(f"Reporte consolidado actualizado en: {self.ruta_reportes_consolidado_diario}")
 
