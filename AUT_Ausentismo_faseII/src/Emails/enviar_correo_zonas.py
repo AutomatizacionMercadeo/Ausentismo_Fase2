@@ -23,7 +23,7 @@ def enviar_correo_zonas(zonas, dia_habil):
             if carpeta_mpio.startswith("Municipio_"):
                 municipio = carpeta_mpio.replace("Municipio_", "")
 
-                ruta_excel_mpio = os.path.join(carpeta_zona, carpeta_mpio, f'AUSENTISMO_{municipio}_{dia_habil}.xlsx')
+                ruta_excel_mpio = os.path.join(carpeta_zona, carpeta_mpio, f'REPORTE_AUSENTISMO_{municipio}_{dia_habil}.xlsx')
 
                 if not os.path.exists(ruta_excel_mpio):
                     print(f"No existe archivo para {municipio}, se omite")

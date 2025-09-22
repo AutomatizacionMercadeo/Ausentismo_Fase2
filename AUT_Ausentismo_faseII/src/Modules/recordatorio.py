@@ -75,7 +75,7 @@ def filtrar_zonas_ausentismos():
                     os.makedirs(carpeta_municipio)
                     #print(f"Carpeta creada: {carpeta_municipio}")
 
-                ruta_guardado = os.path.join(carpeta_municipio, f'AUSENTISMO_{municipio}_{dia_habil}.xlsx')
+                ruta_guardado = os.path.join(carpeta_municipio, f'REPORTE_AUSENTISMO_{municipio}_{dia_habil}.xlsx')
                 workbook.save(ruta_guardado)
                 #print(f"Archivo guardado para el municipio {municipio} en {ruta_guardado}")
 
