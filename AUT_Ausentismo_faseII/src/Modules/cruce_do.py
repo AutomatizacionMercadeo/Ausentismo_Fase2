@@ -77,6 +77,7 @@ def guardar_datos_no_coincidentes(datos_no_coincidentes, dia_habil):
     path_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ruta_guardado = os.path.join(path_root, 'Reportes_Ausentismos', f'Datos_No_Coincidentes_con_DO_{dia_habil}.xlsx')
 
+    # Cargar archivo existente o crear uno nuevo
     workbook = load_workbook(ruta_guardado) if os.path.exists(ruta_guardado) else Workbook()
     hoja = workbook.active
     hoja.title = "No Coincidentes"
@@ -89,9 +90,14 @@ def guardar_datos_no_coincidentes(datos_no_coincidentes, dia_habil):
     for col, header in enumerate(headers, start=1):
         hoja.cell(row=1, column=col, value=header)
 
-    # Agregamos los datos a partir de la fila 2
+    # Cargar los valores ya existentes en la hoja (para evitar duplicados)
+    valores_existentes = set()
+    for row in hoja.iter_rows(min_row=2, values_only=True):
+        valores_existentes.add(row)
+
+    # Agregar solo si no existe previamente
     for fila in datos_no_coincidentes:
-        hoja.append([
+        nueva_fila = (
             fila.get('ZONA', ''),
             fila.get('CENTRO_COSTOS', ''),
             fila.get('OFICINA', ''),
@@ -101,9 +107,11 @@ def guardar_datos_no_coincidentes(datos_no_coincidentes, dia_habil):
             fila.get('DIAS', ''),
             fila.get('FECHA_INICIAL', ''),
             fila.get('FECHA_FINAL', '')
-        ])
-
-    # llamamos a la funcion de estilo para dar formato a la hoja
+        )
+        if nueva_fila not in valores_existentes:
+            hoja.append(nueva_fila)
+            valores_existentes.add(nueva_fila)  # se añade al set para no repetir en la misma ejecución
+    # Aplicar estilos
     estilo = Cruce_datos()
     estilo.estilo_formato_excel(hoja)
 
