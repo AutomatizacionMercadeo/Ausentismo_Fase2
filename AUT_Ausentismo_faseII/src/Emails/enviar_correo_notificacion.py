@@ -8,7 +8,7 @@ from src.Emails.crear_correos import crearCorreos
 def enviar_correo_notificacion(ruta_consolidado_diario, dia_habil):
 
     #to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com', 'natalia.vanegas@gruporeditos.com']
-    to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com', 'natalia.vanegas@gruporeditos.com']
+    to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com']
     # Obtener las credenciales de la cuenta de correo
     correo = crearCorreos(to_email_notificacion)
     smtp_server, smtp_port, smtp_username, smtp_password = correo.conexion_correo()
