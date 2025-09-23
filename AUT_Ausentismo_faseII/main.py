@@ -17,6 +17,7 @@ def main():
     # Definir ruta raíz
     path_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
     ruta_reportes_vencidos = os.path.join(path_root, 'Consolidado_Mensual')
+    ruta_reportes_ausentismos = os.path.join(path_root, 'Reportes_Ausentismos')
     data = get_datos_id('1')
     # print(data)
 
@@ -65,7 +66,7 @@ def main():
         enviar_correo_zonas(zonas, dia_habil)
 
     # LLAMAMOS A LA FUNCION DE ELIMINAR ARCHIVOS ANTIGUOS
-    eliminar_archivos_antiguos(dia_habil, ruta_reportes_vencidos)
+    eliminar_archivos_antiguos(dia_habil, ruta_reportes_vencidos, ruta_reportes_ausentismos)
 
 
     try:

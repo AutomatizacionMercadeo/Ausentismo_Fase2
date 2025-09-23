@@ -6,7 +6,7 @@ import datetime as dt
 from src.Modules.consolidado_mensual import MESES_DIC
 
 
-def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
+def eliminar_archivos_antiguos(dia_habil, ruta_reportes_vencidos, ruta_reportes_ausentismos):
 
         fecha_valida = dia_habil
         if not fecha_valida:
@@ -14,16 +14,18 @@ def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
 
         patrones = [
             re.compile(r"Ausentismos_SIN_JUSTIFICACION_GENERAL - (\d{4}-\d{2}-\d{2})\.xlsx"),
-            re.compile(r"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_(\d{4}-\d{2}-\d{2})\.xlsx")
+            re.compile(r"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_(\d{4}-\d{2}-\d{2})\.xlsx"),
+            re.compile(r"Datos_No_Coincidentes_con_DO_(\d{4}-\d{2}-\d{2})\.xlsx")
+            
         ]
 
-        for archivo in os.listdir(ruta_reportes):
+        for archivo in os.listdir(ruta_reportes_ausentismos):
             for p in patrones:
                 match = p.match(archivo)
                 if match:
                     fecha_archivo = match.group(1)
                     if fecha_archivo != fecha_valida:
-                        ruta_completa = os.path.join(ruta_reportes, archivo)
+                        ruta_completa = os.path.join(ruta_reportes_ausentismos, archivo)
                         print(f"Eliminando archivo antiguo: {ruta_completa}")
                         os.remove(ruta_completa)
                     break  # si ya hizo match con un patrón, no seguir probando con otros
@@ -31,8 +33,8 @@ def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
 
         # Regex que captura la fecha dentro de la carpeta Zona_...
         patron = re.compile(r"Zona.*?(\d{4}-\d{2}-\d{2})")
-        for nombre in os.listdir(ruta_reportes):
-            ruta_completa = os.path.join(ruta_reportes, nombre)
+        for nombre in os.listdir(ruta_reportes_ausentismos):
+            ruta_completa = os.path.join(ruta_reportes_ausentismos, nombre)
 
             match = patron.search(nombre)   # usar search en lugar de match
             if match:
@@ -63,11 +65,11 @@ def eliminar_archivos_antiguos(dia_habil, ruta_reportes):
             mes_a_eliminar = (MESES_DIC[mes_prev], anio_prev)
 
             # Buscar en nombres de consolidado mensual
-            for archivo in os.listdir(ruta_reportes):
+            for archivo in os.listdir(ruta_reportes_vencidos):
                 if archivo.startswith("REPORTE_CONSOLIDADO_AUSENTISMO_") and archivo.endswith(".xlsx"):
                     patron = f"{mes_a_eliminar[0]}_{mes_a_eliminar[1]}"
                     if patron in archivo:
-                        ruta_archivo = os.path.join(ruta_reportes, archivo)
+                        ruta_archivo = os.path.join(ruta_reportes_vencidos, archivo)
                         os.remove(ruta_archivo)
                         print(f"Eliminando consolidado mensual antiguo: {ruta_archivo}")
 
