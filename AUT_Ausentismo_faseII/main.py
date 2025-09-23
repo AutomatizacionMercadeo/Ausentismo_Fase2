@@ -11,6 +11,7 @@ from src.Emails.enviar_correo_zonas import enviar_correo_zonas
 from src.Emails.crear_correos import crearCorreos
 from src.Modules.eliminar_archivos_antiguos import eliminar_archivos_antiguos
 from src.Modules.cruce_do import cruce_do
+from src.Emails.enviar_correo_notificacion import enviar_correo_notificacion
 
 
 def main():
@@ -18,6 +19,7 @@ def main():
     path_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
     ruta_reportes_vencidos = os.path.join(path_root, 'Consolidado_Mensual')
     ruta_reportes_ausentismos = os.path.join(path_root, 'Reportes_Ausentismos')
+
     data = get_datos_id('1')
     # print(data)
 
@@ -68,6 +70,10 @@ def main():
     # LLAMAMOS A LA FUNCION DE ELIMINAR ARCHIVOS ANTIGUOS
     eliminar_archivos_antiguos(dia_habil, ruta_reportes_vencidos, ruta_reportes_ausentismos)
 
+    
+    # Llamar a la función para enviar el correo de notificación
+    ruta_consolidado_diario = os.path.join(ruta_reportes_ausentismos, f"REPORTE_CONSOLIDADO_AUSENTISMO_DIARIO_{dia_habil}.xlsx")
+    enviar_correo_notificacion(ruta_consolidado_diario, dia_habil)
 
     try:
         datos_no_coincidentes = cruce_do(dia_habil)
