@@ -7,7 +7,7 @@ def consultar_consolidado_mensual():
     try:
         cursor = conn.cursor()
         query = f"""
-        SELECT * FROM [DB_Automatizacion_Reportes].[dbo].[consolidado_ausentismos];
+        SELECT * FROM [BI_DM_Automatizacion].[dbo].[TblConsolidadoAusentismos];
         """
         cursor.execute(query)
 
@@ -16,7 +16,7 @@ def consultar_consolidado_mensual():
         data_maestra = [dict(zip(columnas, fila)) for fila in datos]
 
         # imprimimos los resultados
-        print(f"Se han encontrado {len(data_maestra)} registros en la DB maestra.")
+        print(f"Se han encontrado {len(data_maestra)} registros en TblConsolidadoAusentismos.")
         # for fila in data_maestra:
         #     print(fila)
 

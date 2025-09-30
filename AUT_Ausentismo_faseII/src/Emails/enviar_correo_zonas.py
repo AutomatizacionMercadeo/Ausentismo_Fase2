@@ -36,7 +36,9 @@ def enviar_correo_zonas(zonas, dia_habil):
                 centros_costo_mpio = df_mpio['CENTRO COSTOS'].astype(str).str.replace(r'\.0$', '', regex=True).to_list()
 
                 # Buscamos correos en la maestra
-                data_correos_mpio = ["jose.chaverra@gruporeditos.com"]
+                data_correos_mpio = ["jose.chaverra@gruporeditos.com",
+                                     "cristian.avendano@gruporeditos.com",
+                                     "centraldeinteligenciacorporativa@gruporeditos.com"]
                 for cc in centros_costo_mpio:
                     if cc in centros_costo_maestra:
                         correo = df.loc[

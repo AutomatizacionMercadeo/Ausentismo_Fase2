@@ -67,10 +67,10 @@ def insert_consolidado_mensual_sql():
         cursor = conn.cursor()
 
         # validamos si la tabla consolidado_ausentismo existe
-        cursor.execute("SELECT COUNT(*) FROM consolidado_ausentismos")
+        cursor.execute("SELECT COUNT(*) FROM TblConsolidadoAusentismos")
         resultado = cursor.fetchone()
         if resultado is None:
-            print("La tabla 'consolidado_ausentismos' no existe en la base de datos.")
+            print("La tabla 'TblConsolidadoAusentismos' no existe en la base de datos.")
             return False
 
         # insertar los datos en la tabla consolidado_ausentismo
@@ -78,7 +78,7 @@ def insert_consolidado_mensual_sql():
             try:
                 # Validar que no exista la misma combinación de CEDULA + FECHA_INICIAL
                 cursor.execute("""
-                    SELECT COUNT(*) FROM consolidado_ausentismos 
+                    SELECT COUNT(*) FROM TblConsolidadoAusentismos 
                     WHERE CEDULA = ? AND FECHA_INICIAL = ?
                 """, row['CEDULA'], row['FECHA_INICIAL'])
                 
@@ -86,7 +86,7 @@ def insert_consolidado_mensual_sql():
 
                 if existe == 0:
                     cursor.execute("""
-                        INSERT INTO consolidado_ausentismos (ZONA, CENTRO_COSTOS, OFICINA, CEDULA, NOMBRE, MOTIVO_AUSENCIA, DIAS, FECHA_INICIAL, FECHA_FINAL)
+                        INSERT INTO TblConsolidadoAusentismos (ZONA, CENTRO_COSTOS, OFICINA, CEDULA, NOMBRE, MOTIVO_AUSENCIA, DIAS, FECHA_INICIAL, FECHA_FINAL)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """, 
                     row['ZONA'], 

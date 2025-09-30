@@ -126,7 +126,7 @@ class DescargaCorreo():
                     # Reenviar el mismo correo al remitente y con copia a soporte
                     rv = mensaje.forward()
                     rv.to.add(mensaje.sender.address)              # remitente original
-                    rv.cc.add("aprendiz.funcional@gruporeditos.com")      # copia al soporte
+                    rv.cc.add("jose.chaverra@gruporeditos.com", "cristian.avendano@gruporeditos.com")      # copia al soporte
                     rv.subject = f"RV: {mensaje.subject}"
 
                     # Aquí agregamos el mensaje antes del contenido reenviado
@@ -168,7 +168,7 @@ class DescargaCorreo():
                     # Aquí puedes notificar el error
                     rv = mensaje.forward()
                     rv.to.add(mensaje.sender.address)
-                    rv.cc.add("aprendiz.funcional@gruporeditos.com")
+                    rv.cc.add("jose.chaverra@gruporeditos.com", "cristian.avendano@gruporeditos.com")
                     rv.subject = f"RV: {mensaje.subject}"
                     rv.body = (
                         f"""<p>
@@ -205,7 +205,7 @@ class DescargaCorreo():
                             # Aquí notificamos el error a la oficina que envió el correo
                             rv = mensaje.forward()
                             rv.to.add(mensaje.sender.address)
-                            rv.cc.add("aprendiz.funcional@gruporeditos.com")
+                            rv.cc.add("jose.chaverra@gruporeditos.com", "cristian.avendano@gruporeditos.com")
                             rv.subject = f"RV: {mensaje.subject}"
                             rv.body = (
                                 f"""<p>
@@ -230,7 +230,7 @@ class DescargaCorreo():
                         mensaje.mark_as_read()
                         rv = mensaje.forward()
                         rv.to.add(mensaje.sender.address)
-                        rv.cc.add("aprendiz.funcional@gruporeditos.com")
+                        rv.cc.add("jose.chaverra@gruporeditos.com", "cristian.avendano@gruporeditos.com")
                         rv.subject = f"RV: {mensaje.subject}"
                         rv.body = (
                             f"""<p>

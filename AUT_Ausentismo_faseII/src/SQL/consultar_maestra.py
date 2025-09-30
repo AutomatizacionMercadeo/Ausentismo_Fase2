@@ -7,7 +7,7 @@ def consultar_maestra_DB():
     try:
         cursor = conn.cursor()
         query = f"""
-        SELECT * FROM [DB_Automatizacion_Reportes].[dbo].[MAESTRA];
+        SELECT * FROM [BI_DM_Automatizacion].[dbo].[TblAusentismosMaestra];
         """
         cursor.execute(query)
 
@@ -16,7 +16,7 @@ def consultar_maestra_DB():
         data_maestra = [dict(zip(columnas, fila)) for fila in datos]
 
         # imprimimos los resultados
-        print(f"Se han encontrado {len(data_maestra)} registros en la DB maestra.")
+        print(f"Se han encontrado {len(data_maestra)} registros en TblAusentismosMaestra.")
         # for fila in data_maestra:
         #     print(fila)
 

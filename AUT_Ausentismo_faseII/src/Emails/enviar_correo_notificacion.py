@@ -7,7 +7,7 @@ from src.Emails.crear_correos import crearCorreos
 #ahora creamos una funcion para enviar errores de envio de correos
 def enviar_correo_notificacion(ruta_consolidado_diario, dia_habil):
 
-    to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com', 'natalia.vanegas@gruporeditos.com']
+    to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com', 'natalia.vanegas@gruporeditos.com', 'centraldeinteligenciacorporativa@gruporeditos.com']
     #to_email_notificacion = ['aprendiz.funcional@gruporeditos.com', 'cristian.avendano@gruporeditos.com', 'jose.chaverra@gruporeditos.com']
     # Obtener las credenciales de la cuenta de correo
     correo = crearCorreos(to_email_notificacion)

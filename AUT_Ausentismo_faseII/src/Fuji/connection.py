@@ -10,9 +10,11 @@ def connection(max_retries=3, retry_delay=5):
     # Obtener las credenciales de las variables de entorno
     server = os.getenv('SERVER')
     database = os.getenv('DATABASE')
+    usr = os.getenv('USR')
+    pwd = os.getenv('PASS')
     
     # Construir cadena de conexión
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={usr};PWD={pwd};'
     
     for attempt in range(max_retries):
         try:
