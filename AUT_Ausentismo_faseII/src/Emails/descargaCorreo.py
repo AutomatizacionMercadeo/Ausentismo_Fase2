@@ -192,12 +192,13 @@ class DescargaCorreo():
 
                 for adjunto in mensaje.attachments:
                     print(f"Revisando adjunto: {adjunto.name}")
-                    # validar la extensión del archivo
+                    
+                    # Validar la extensión del archivo
                     if adjunto.name.endswith('.xlsx') or adjunto.name.endswith('.xls'):
                         
-                        # validar el nombre del archivo
+                        # Validar el nombre del archivo
                         if "AUSENTISMO" in adjunto.name.upper():
-                            adjuntos_validos.append(adjunto)  #guardamos adjuntos válidos
+                            adjuntos_validos.append(adjunto)  # Guardamos adjuntos válidos
                         else:
                             mensaje.mark_as_read()
                             print(f"Error: Nombre de archivo no esperado: {adjunto.name}")
@@ -209,10 +210,10 @@ class DescargaCorreo():
                             rv.subject = f"RV: {mensaje.subject}"
                             rv.body = (
                                 f"""<p>
-                                Este correo fue reenviado automáticamente porque el nombre o la fecha del archivo adjunto no es el esperado.<br><br>
+                                Este correo fue reenviado automáticamente porque el nombre del archivo adjunto no es el esperado.<br><br>
                                 <b>Error:</b> El archivo adjunto {adjunto.name} no tiene el nombre esperado.<br>
                                 <b>Nombre esperado que contenga:</b> AUSENTISMO<br><br>
-                                Por favor, verifique y vuelva a enviar el correo con el nombre o la fecha del archivo requerido al correo: 
+                                Por favor, verifique y vuelva a enviar el correo con el nombre del archivo requerido al correo: 
                                 <a href="mailto:correo.automatizacion@gruporeditos.com">correo.automatizacion@gruporeditos.com</a>.<br>
                                 Gracias.
                                 </p>
@@ -225,29 +226,9 @@ class DescargaCorreo():
                             continue  # Ignorar este adjunto y pasar al siguiente
 
                     else:
-                        # Ignoramos archivos que no sean xls o xlsx
-                        print(f"Error: archivo no tiene la extensión correcta {adjunto.name}")
-                        mensaje.mark_as_read()
-                        rv = mensaje.forward()
-                        rv.to.add(mensaje.sender.address)
-                        rv.cc.add("jose.chaverra@gruporeditos.com", "cristian.avendano@gruporeditos.com")
-                        rv.subject = f"RV: {mensaje.subject}"
-                        rv.body = (
-                            f"""<p>
-                            Este correo fue reenviado automáticamente porque la extensión del archivo adjunto no es la esperada.<br><br>
-                            <b>Error:</b> El archivo adjunto {adjunto.name} no tiene la extensión esperada.<br>
-                            <b>Extensiones esperadas:</b> .xls o .xlsx<br><br>
-                            Por favor, verifique y vuelva a enviar el correo con la extensión correcta al correo: 
-                            <a href="mailto:correo.automatizacion@gruporeditos.com">correo.automatizacion@gruporeditos.com</a>.<br>
-                            Gracias.
-                            </p>
-                            <hr>
-                            """
-                            + rv.body
-                        )
-                        rv.send()
-                        print(f"Correo error reenviado a {mensaje.sender.address} y copia a soporte.")   
-                        continue  # Ignorar este adjunto y pasar al siguiente
+                        # Ignorar silenciosamente archivos que no sean xls o xlsx (firmas, imágenes, etc.)
+                        print(f"Archivo ignorado (extensión no válida): {adjunto.name}")
+                        continue  # Pasar al siguiente adjunto sin enviar correo de error
 
                 # Al terminar el bucle, si hay archivos válidos descargamos el último
                 if adjuntos_validos:
